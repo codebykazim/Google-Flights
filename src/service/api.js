@@ -1,6 +1,5 @@
 const API_BASE_URL = "https://sky-scrapper.p.rapidapi.com"
 
-// You'll need to add your RapidAPI key here
 const API_KEY = import.meta.env.VITE_RAPIDAPI_KEY
 
 const headers = {
@@ -15,24 +14,23 @@ export const apiClient = {
     if (params) {
       Object.entries(params).forEach(([key, value]) => {
         if (value) {
-          // Only add parameters with values
           url.searchParams.append(key, value)
         }
       })
     }
 
-    console.log("API Request URL:", url.toString()) // Debug
+    console.log("API Request URL:", url.toString())
 
     const response = await fetch(url.toString(), {
       method: "GET",
       headers,
     })
 
-    console.log("API Response Status:", response.status) // Debug
+    console.log("API Response Status:", response.status)
 
     if (!response.ok) {
       const errorText = await response.text()
-      console.error("API Error Response:", errorText) // Debug
+      console.error("API Error Response:", errorText)
       throw new Error(`API Error: ${response.status} ${response.statusText}`)
     }
 
@@ -48,7 +46,7 @@ export const apiClient = {
 
     if (!response.ok) {
       const errorText = await response.text()
-      console.error("API Error Response:", errorText) // Debug
+      console.error("API Error Response:", errorText)
       throw new Error(`API Error: ${response.status} ${response.statusText}`)
     }
 
